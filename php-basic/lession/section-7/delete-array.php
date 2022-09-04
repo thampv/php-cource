@@ -34,7 +34,7 @@
                     print_r($list_user);
                     echo "</pre>";
 
-                    unset($list_user['email']);
+                    unset($list_user['email'])  ;
                     echo "Giá trị của mảng list_user sau khi xóa bằng hàm unset() là: <br>";
                     echo "<pre>";
                     print_r($list_user);
