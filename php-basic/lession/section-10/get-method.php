@@ -1,35 +1,68 @@
 
 <?php
-    $site_title = "Variable Scope In Php";
+    $site_title = "GET METHOD IN PHP";
     $input_text_1 = create_input_text_bootstrap("input_text_1", "Fullname", "username", "text", $class_label = array('bg-light', 'text-primary','font-weight-bold'), $class_input = array('','',''));
-    $button_1 = create_button_bootstrap("btn-dang-nhap", "Đăng nhập", "login", $button_class = array('btn-primary', '', ''));
+    $button_1 = create_button_bootstrap("btn-search", "Search", "searched", $button_class = array('btn-primary', '', ''));
     $html_content = "
 
-        <div class='container'>
-        <h1 class='text-primary'>Variable Scope In Php - Phạm vi của biến trong Php</h1>
-            <div class='row'>
-                <div class='col-md-12'>
-
-                    {$input_text_1}
-
-                    {$button_1}
-
+        <form action='' method='GET'>
+            <div class='container'>
+            <h1 class='text-primary'>Get Method In Php - Phương thức Get trong Php</h1>
+                <div class='form-row'>
+                    <div class='col-md-8'>
+                        <input type'text' class='form-control' name='search' id='search' placeholder='Search'>
+                    </div>
+                    <div class='col-md-4'>
+                        {$button_1}
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     
     "
     ;
     html_head_bootstrap_jquery($site_title);
     html_body_start();
     html_content($html_content);
+
+?>
+
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+                if(isset($_GET['btn-search'])) {
+                    echo "Thông tin người dùng nhập vào ô search là: {$_GET['search']}";
+                }
+            ?>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-primary">Toàn bộ nội dung người dùng nhập vào form là:</h3>
+            <?php
+                show_array($_GET);
+            ?>
+        </div>
+    </div>
+</div>
+
+
+<?php
     html_body_end();
     html_end();
 ?>
-
-
-
-
 
 <!-- FUNCTION MAKE BY ME -->
 

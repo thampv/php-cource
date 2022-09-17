@@ -1,37 +1,78 @@
 
 <?php
-    $site_title = "Variable Scope In Php";
-    $input_text_1 = create_input_text_bootstrap("input_text_1", "Fullname", "username", "text", $class_label = array('bg-light', 'text-primary','font-weight-bold'), $class_input = array('','',''));
+    $site_title = "POST METHOD IN FORM";
+    $input_username = create_input_text_bootstrap("username_id", "Username", "username", "text", $class_label = array('bg-light', 'text-primary','font-weight-bold'), $class_input = array('','',''));
+    $input_password = create_input_text_bootstrap("password_id", "Password", "password", "password", $class_label = array('bg-light', 'text-primary','font-weight-bold'), $class_input = array('','',''));
     $button_1 = create_button_bootstrap("btn-dang-nhap", "Đăng nhập", "login", $button_class = array('btn-primary', '', ''));
     $html_content = "
 
-        <div class='container'>
-        <h1 class='text-primary'>Variable Scope In Php - Phạm vi của biến trong Php</h1>
-            <div class='row'>
-                <div class='col-md-12'>
+        <form action='' method='POST'>
+            <div class='container'>
+            <h1 class='text-primary'>Post method in form</h1>
+                <div class='row'>
+                    <div class='col-md-12'>
 
-                    {$input_text_1}
+                        {$input_username}
 
-                    {$button_1}
+                        {$input_password}
 
+                        {$button_1}
+
+                    </div>
                 </div>
+
             </div>
-        </div>
+
+        </form>
+        
     
     "
     ;
     html_head_bootstrap_jquery($site_title);
     html_body_start();
     html_content($html_content);
+
+?>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-primary">Toàn bộ nội dung người dùng nhập vào form là:</h3>
+                <?php
+
+                    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        echo "Username: ".$_POST['username'];
+                        echo "<br>";
+                        echo "Password: {$_POST['password']}";
+                    }
+                
+                ?>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-primary">Toàn bộ nội dung người dùng nhập vào form là:</h3>
+                <?php
+
+                    show_array($_SERVER);
+                    show_array($_POST);
+                
+                ?>
+            </div>
+        </div>
+    </div>
+
+
+<?php
     html_body_end();
     html_end();
 ?>
 
-
-
-
-
-<!-- FUNCTION MAKE BY ME -->
 
 <?php
 
@@ -47,11 +88,8 @@
 # 2. sum_multi_number ==> sum multiple numbers - tính tổng nhiều số
 # 3. html_head_boostrap_jquery ==> write head tag content including bootstrap and jquery
 # 4. html_end ==> write close html tag - viết thẻ đóng html
-# 5. html_content ==> write html content
-# 6. create_input_text_bootstrap ==> create an input tag using bootstrap with 6 parameters
-# 7. Create_button_bootstrap ==> create a button tag using bootstrap with 3 parameters
-# 8. html_body_start ==> write open html tag <html>
-# 9. html_body_end ==> wirte close html tag </html> 
+# 5. html_body ==> write body tag content
+# 6. create_input_text_bootstrap ==> create an input tag using bootstrap with 5 parameters
 
 //============================================================================================================================
 # 1. show_array function
@@ -134,22 +172,22 @@ function html_content($html_content) {
     /* create_input_text_bootstrap("username_id", "Fullname", "username", $class_label = array('bg-light', 'text-primary','font-weight-bold'), $class_input = array('','','')) */
     //=================================================
 
-    function create_input_text_bootstrap(){
-        $parameter_array = func_get_args();
-        $id_input_text = $parameter_array[0];
-        $label_name_input_text = $parameter_array[1];
-        $input_name = $parameter_array[2];
-        $input_type = $parameter_array[3];
-        $class_label_input_text = $parameter_array[4];
-        $class_input_text = $parameter_array[5];
-        $input_text_html = "
-        <div class='form-group'>
-            <label for='{$id_input_text}' class='{$class_label_input_text[0]} {$class_label_input_text[1]} {$class_label_input_text[2]}'>{$label_name_input_text}</label>
-            <input type='{$input_type}' class='form-control {$class_input_text[0]} {$class_input_text[1]} {$class_input_text[2]}' name='{$input_name}' id='{$id_input_text}'>
-        </div>
-        ";
-        return $input_text_html;
-    }
+function create_input_text_bootstrap(){
+    $parameter_array = func_get_args();
+    $id_input_text = $parameter_array[0];
+    $label_name_input_text = $parameter_array[1];
+    $input_name = $parameter_array[2];
+    $input_type = $parameter_array[3];
+    $class_label_input_text = $parameter_array[4];
+    $class_input_text = $parameter_array[5];
+    $input_text_html = "
+    <div class='form-group'>
+        <label for='{$id_input_text}' class='{$class_label_input_text[0]} {$class_label_input_text[1]} {$class_label_input_text[2]}'>{$label_name_input_text}</label>
+        <input type='{$input_type}' class='form-control {$class_input_text[0]} {$class_input_text[1]} {$class_input_text[2]}' name='{$input_name}' id='{$id_input_text}'>
+    </div>
+    ";
+    return $input_text_html;
+}
 
 # 7. Create_button_bootstrap ==> create a button tag using bootstrap with 3 parameters
 # 7.1 Parameter 1: name button tag
@@ -182,7 +220,7 @@ function html_body_start() {
 <body>";
 }
 
-# 9. html_body_end
+# 9. html_body_start
 
 function html_body_end() {
     echo "

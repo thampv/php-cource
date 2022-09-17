@@ -1,37 +1,14 @@
 
 <?php
-    $site_title = "Variable Scope In Php";
-    $input_text_1 = create_input_text_bootstrap("input_text_1", "Fullname", "username", "text", $class_label = array('bg-light', 'text-primary','font-weight-bold'), $class_input = array('','',''));
-    $button_1 = create_button_bootstrap("btn-dang-nhap", "Đăng nhập", "login", $button_class = array('btn-primary', '', ''));
-    $html_content = "
 
-        <div class='container'>
-        <h1 class='text-primary'>Variable Scope In Php - Phạm vi của biến trong Php</h1>
-            <div class='row'>
-                <div class='col-md-12'>
+    show_array($_POST);
 
-                    {$input_text_1}
 
-                    {$button_1}
-
-                </div>
-            </div>
-        </div>
-    
-    "
-    ;
-    html_head_bootstrap_jquery($site_title);
-    html_body_start();
-    html_content($html_content);
-    html_body_end();
-    html_end();
 ?>
 
 
 
 
-
-<!-- FUNCTION MAKE BY ME -->
 
 <?php
 
